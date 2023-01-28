@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Stack } from 'react-bootstrap';
+import { Window, MessageList, MessageInput } from 'stream-chat-react';
 import Board from './Board';
+import "./Chat.css";
 
 function Game({ channel }) {
   const [playersJoined, setPlayersJoined] = useState(channel.state.watcher_count === 2);
@@ -21,11 +23,24 @@ function Game({ channel }) {
   }
 
   return (
-    <Stack >
+    <Stack direction="horizontal" gap={3}>
       <Board
         result={result}
         setResult={setResult}
       />
+      <Window>
+        <MessageList 
+          disableDateSeparator
+          closeReactionSelectorOnClick
+          messageActions={false}
+          AttachmentFileIcon={undefined}
+        />
+        <MessageInput 
+          noFiles
+          closeAttachmentPicker
+
+        />
+      </Window>
     </Stack>
   );
 }

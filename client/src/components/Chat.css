@@ -1,0 +1,89 @@
+.str-chat__list {
+  background-color: #F8F8F8;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  padding: 5px;
+  height: 240px;
+  width: 300px;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.str-chat__list ul {
+  list-style-type: none;
+  margin: 5px;
+  padding: 0;
+}
+
+.str-chat__list li {
+  list-style-type: none;
+  background-color: #F3F2F2;
+  margin-top: 10px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+}
+
+.str-chat__message-data {
+  margin-left: 5px;
+  display: flex;
+}
+
+.str-chat__message-simple-timestamp {
+  order: 1;
+}
+
+.str-chat__message-simple-name {
+  order: 2;
+  margin-left: 5px;
+}
+
+.str-chat__message-text-inner {
+  font-size: 16px;
+  padding-left: 5px;
+}
+
+.str-chat__message-text-inner p {
+  margin: 0;
+}
+
+.str-chat__input-flat {
+  width: 300px;
+  height: 60px;
+  background-color: #F8F8F8;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+.str-chat__input-flat-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  padding: 8px 10px 5px;
+}
+
+.rta__textarea {
+  resize: none;
+  border: none;
+  border-radius: 6px;
+  padding: 10px;
+  font-size: 15px;
+  width: 200px;
+  background: #F8F8F8;
+  outline: none;
+}
+
+.rta__textarea:focus {
+  border: 1px solid #F3F2F2;
+}
+
+.str-chat__list .str-chat__message-simple-status,
+.str-chat__list .str-chat__avatar,
+.str-chat__message-simple__actions,
+.rfu-dropzone__notifier,
+.str-chat__emojiselect-wrapper,
+.str-chat__fileupload-wrapper,
+.str-chat__send-button {
+  display: none;
+}

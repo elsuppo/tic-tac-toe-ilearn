@@ -1,13 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useChannelStateContext } from 'stream-chat-react';
 import Cell from './Cell';
+import winСombinations from '../winСombinations';
 
-function Board() {
+function Board({result, setResult}) {
   const [board, setBoard] = useState(['', '', '', '', '', '', '', '', '']);
   const [player, setPlayer] = useState('X');
   const [changePlayer, setChangePlayer] = useState('X');
 
   const { channel } = useChannelStateContext();
+
+  useEffect(() => {
+    checkWin();
+    checkDraw();
+  }, [board])
 
   const selectCell = async (cell) => {
     if (changePlayer === player && board[cell] === '') {
@@ -27,13 +33,50 @@ function Board() {
     }
   }
 
+  const checkWin = () => {
+    winСombinations.forEach((currCombination) => {
+      const firstPlayer = board[currCombination[0]];
+      if (firstPlayer === '') return
+      let foundWinCombination = true;
+      currCombination.forEach((index) => {
+        if (board[index] !== firstPlayer) {
+          foundWinCombination = false;
+        }
+      })
+
+      if (foundWinCombination) {
+        alert(`Winner ${board[currCombination[0]]}`)
+        setResult({
+          winner: board[currCombination[0]],
+          state: 'won'
+        })
+      }
+    })
+  }
+
+  const checkDraw = () => {
+    let filled = true;
+    board.forEach((cell) => {
+      if (cell === '') {
+        filled = false;
+      }
+    })
+    if (filled) {
+      alert('Draw!')
+      setResult({
+        winner: 'none',
+        state: 'draw'
+      })
+    }
+  }
+
   channel.on((event) => {
     if (event.type === 'game-move' && event.user.id !== localStorage.getItem('userId')) {
       const currentPlayer = event.data.player === 'X' ? '0' : 'X';
       setPlayer(currentPlayer);
       setChangePlayer(currentPlayer);
       setBoard(board.map((value, index) => {
-        if (index === event.data.Cell && value === '') {
+        if (index === event.data.cell && value === '') {
           return event.data.player;
         }
         return value;

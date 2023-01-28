@@ -16,6 +16,11 @@ function CreateGame() {
       return;
     }
 
+    if (rivalUser === localStorage.getItem('user')) {
+      alert('You can\'t pick yourself');
+      return;
+    }
+
     const newChannel = await client.channel('messaging', {
       members: [localStorage.getItem('userId'), response.users[0].id]
     });

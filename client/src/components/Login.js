@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
 import { Form, Button, Stack } from 'react-bootstrap';
+import Axios from 'axios';
 
 function Login(props) {
   const [user, setUser] = useState(null);
 
   const login = () => {
+    Axios.post(`${process.env.REACT_APP_SERVER}/login`, user).then(res => {
+      const {token, userId, user} = res.data;
 
+      localStorage.setItem('token', token);
+      localStorage.setItem('userId', userId);
+      localStorage.setItem('user', user);
+    })
   }
 
   return (

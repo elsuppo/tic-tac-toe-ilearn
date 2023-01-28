@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { StreamChat } from 'stream-chat';
 import { Chat } from 'stream-chat-react';
-import JoinGame from './components/JoinGame';
+import CreateGame from './components/CreateGame';
 import Login from "./components/Login";
 import Logout from "./components/Logout";
 
@@ -24,14 +24,14 @@ function App() {
     })
   }
   return (
-    <>
+    <div className="container">
       {isAuth ?
         (<Chat client={client}>
           <Logout
             client={client}
             setIsAuth={setIsAuth}
           />
-          <JoinGame />
+          <CreateGame />
         </Chat>
         ) : (
           <Login
@@ -39,7 +39,7 @@ function App() {
           />
         )
       }
-    </>
+    </div>
   );
 }
 

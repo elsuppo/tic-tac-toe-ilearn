@@ -3,7 +3,7 @@ import { useChannelStateContext } from 'stream-chat-react';
 import Cell from './Cell';
 import winСombinations from '../winСombinations';
 
-function Board({ board, setBoard, setResult, player, setPlayer, changePlayer, setChangePlayer }) {
+function Board({ board, setBoard, result, setResult, player, setPlayer, changePlayer, setChangePlayer }) {
 
   const { channel } = useChannelStateContext();
 
@@ -13,20 +13,22 @@ function Board({ board, setBoard, setResult, player, setPlayer, changePlayer, se
   }, [board])
 
   const selectCell = async (cell) => {
-    if (changePlayer === player && board[cell] === '') {
-      setChangePlayer(player === 'X' ? 'O' : 'X');
+    if (result.state === 'none') {
+      if (changePlayer === player && board[cell] === '') {
+        setChangePlayer(player === 'X' ? 'O' : 'X');
 
-      await channel.sendEvent({
-        type: 'game-move',
-        data: { cell, player }
-      })
+        await channel.sendEvent({
+          type: 'game-move',
+          data: { cell, player }
+        })
 
-      setBoard(board.map((value, index) => {
-        if (index === cell && value === '') {
-          return player;
-        }
-        return value;
-      }))
+        setBoard(board.map((value, index) => {
+          if (index === cell && value === '') {
+            return player;
+          }
+          return value;
+        }))
+      }
     }
   }
 

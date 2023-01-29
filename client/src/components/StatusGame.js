@@ -1,6 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-function StatusGame({ result, player, changePlayer, userName, rivalUser, board }) {
+function StatusGame({ result, player, changePlayer, rivalUser, board, setSelfCounter, setOppCounter }) {
+
+  useEffect(() => {
+    updateCounter();
+  }, [result.winner])
+
+  const userName = localStorage.getItem('user');
 
   const nextMove = () => {
     if (JSON.stringify(board) === JSON.stringify(['', '', '', '', '', '', '', '', ''])) {
@@ -25,6 +31,14 @@ function StatusGame({ result, player, changePlayer, userName, rivalUser, board }
     }
   }
 
+  const updateCounter = () => {
+    if (result.winner === player) {
+      setSelfCounter(prev => prev + 1);
+    } else if (result.winner !== 'none') {
+      setOppCounter(prev => prev + 1);
+    }
+  }
+
   return (
     <div className="d-flex flex-column align-items-center justify-content-center" style={{ height: "70px" }}>
       {result.state === 'none' ? (
@@ -37,9 +51,7 @@ function StatusGame({ result, player, changePlayer, userName, rivalUser, board }
           {result.state === "won" && <p className="fs-4 m-0"><span className="text-success fw-bolder">{nameWinner()}</span> Won The Game!</p>}
           {result.state === "draw" && <p className="fs-4 m-0">Draw!</p>}
         </>
-      )
-
-      }
+      )}
     </div>
   );
 }

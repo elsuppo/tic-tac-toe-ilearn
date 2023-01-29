@@ -84,6 +84,7 @@
 .rfu-dropzone__notifier,
 .str-chat__emojiselect-wrapper,
 .str-chat__fileupload-wrapper,
-.str-chat__send-button {
+.str-chat__send-button,
+.str-chat__empty-channel {
   display: none;
 }

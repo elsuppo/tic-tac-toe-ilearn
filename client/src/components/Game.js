@@ -23,7 +23,7 @@ function Game({ channel }) {
   }
 
   return (
-    <Stack direction="horizontal" gap={3}>
+    <Stack direction="horizontal" gap={3} className="justify-content-center">
       <Board
         result={result}
         setResult={setResult}

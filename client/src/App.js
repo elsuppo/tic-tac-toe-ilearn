@@ -2,8 +2,9 @@ import { useState } from 'react';
 import { StreamChat } from 'stream-chat';
 import { Chat } from 'stream-chat-react';
 import CreateGame from './components/CreateGame';
-import Login from "./components/Login";
-import Logout from "./components/Logout";
+import Login from './components/Login';
+import Header from './components/Header';
+
 
 function App() {
   const api_key = process.env.REACT_APP_API_KEY;
@@ -24,13 +25,13 @@ function App() {
     })
   }
   return (
-    <div className="container">
+    <div className="container p-5">
       {isAuth ?
-        (<Chat client={client}>
-          <Logout
+        (
+        <Chat client={client}>
+          <Header 
             client={client}
-            setIsAuth={setIsAuth}
-          />
+            setIsAuth={setIsAuth}/>
           <CreateGame />
         </Chat>
         ) : (

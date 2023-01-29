@@ -30,13 +30,15 @@ function CreateGame() {
   }
 
   return (
-    <Stack className="col-md-5 mx-auto mt-5" gap={3}>
+    <>
       {channel ? (
-        <Channel channel={channel}>
-          <Game channel={channel} />
-        </Channel>
+        <Stack className="col-md mx-auto mt-5" gap={3}>
+          <Channel channel={channel}>
+            <Game channel={channel} />
+          </Channel>
+        </Stack>
       ) : (
-        <>
+        <Stack className="col-md-5 mx-auto mt-5" gap={3}>
           <Form.Label className="h5">Create Game</Form.Label>
           <Form.Control
             type="text"
@@ -44,9 +46,10 @@ function CreateGame() {
             onChange={(event) => setRivalUser(event.target.value)}
           />
           <Button onClick={createGame}>Join or Start Game</Button>
-        </>
+        </Stack>
       )}
-    </Stack>
+    </>
+
   );
 }
 

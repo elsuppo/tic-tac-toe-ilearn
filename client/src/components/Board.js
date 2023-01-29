@@ -85,7 +85,7 @@ function Board({result, setResult}) {
   })
 
   return (
-    <div className="d-flex flex-row mx-auto">
+    <div className="d-flex flex-row">
       <div>
         <Cell
           value={board[0]}

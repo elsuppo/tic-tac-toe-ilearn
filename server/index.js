@@ -7,7 +7,11 @@ const { v4: uuidv4 } = require('uuid');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors());
+app.use(cors({
+  origin: process.env.CLIENT_URL,
+  methods: ['GET', 'POST'],
+  credentials: true,
+}));
 app.use(express.json());
 const api_key = process.env.API_KEY;
 const api_secret = process.env.SECRET_KEY;

@@ -37,6 +37,7 @@ function CreateGame() {
             <Game
               channel={channel}
               setChannel={setChannel}
+              rivalUser={rivalUser}
             />
           </Channel>
         </Stack>

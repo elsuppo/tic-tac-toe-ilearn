@@ -3,10 +3,7 @@ import { useChannelStateContext } from 'stream-chat-react';
 import Cell from './Cell';
 import winСombinations from '../winСombinations';
 
-function Board({ setResult }) {
-  const [board, setBoard] = useState(['', '', '', '', '', '', '', '', '']);
-  const [player, setPlayer] = useState('X');
-  const [changePlayer, setChangePlayer] = useState('X');
+function Board({ board, setBoard, setResult, player, setPlayer, changePlayer, setChangePlayer }) {
 
   const { channel } = useChannelStateContext();
 
@@ -84,6 +81,8 @@ function Board({ setResult }) {
         winner: 'none',
         state: 'none'
       });
+      setPlayer('X');
+      setChangePlayer('X');
     }
   })
 

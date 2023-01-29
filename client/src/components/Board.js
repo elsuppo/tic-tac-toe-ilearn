@@ -78,6 +78,12 @@ function Board({ setResult }) {
         }
         return value;
       }))
+    } else if (event.type === 'game-refresh') {
+      setBoard(['', '', '', '', '', '', '', '', '']);
+      setResult({
+        winner: 'none',
+        state: 'none'
+      });
     }
   })
 

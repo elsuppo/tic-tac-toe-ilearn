@@ -25,13 +25,19 @@ function Game({ channel, setChannel }) {
     }
   });
 
+  const refreshGame = async () => {
+    await channel.sendEvent({
+      type: 'game-refresh',
+    })
+  }
+
   if (!playersJoined) {
     return <Waiting />
   }
 
   return (
     <Stack gap={3}>
-      <GameTools setChannel={setChannel} />
+      <GameTools setChannel={setChannel} refreshGame={refreshGame}/>
       <ResultGame result={result} />
       <Stack direction="horizontal" gap={3} className="justify-content-center flex-wrap">
         <Board setResult={setResult} />

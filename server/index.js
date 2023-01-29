@@ -1,9 +1,8 @@
-import * as dotenv from 'dotenv';
-dotenv.config();
-import express from 'express';
-import cors from 'cors';
-import { StreamChat } from 'stream-chat';
-import { v4 as uuidv4 } from 'uuid';
+require('dotenv').config();
+const express = require('express');
+const cors = require('cors');
+const StreamChat = require('stream-chat').StreamChat;
+const { v4: uuidv4 } = require('uuid');
 
 const app = express();
 const PORT = process.env.PORT || 5000;

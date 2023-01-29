@@ -34,7 +34,10 @@ function CreateGame() {
       {channel ? (
         <Stack className="col-md mx-auto mt-5" gap={3}>
           <Channel channel={channel}>
-            <Game channel={channel} />
+            <Game
+              channel={channel}
+              setChannel={setChannel}
+            />
           </Channel>
         </Stack>
       ) : (

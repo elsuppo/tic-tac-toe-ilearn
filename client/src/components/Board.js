@@ -17,7 +17,7 @@ function Board({ setResult }) {
 
   const selectCell = async (cell) => {
     if (changePlayer === player && board[cell] === '') {
-      setChangePlayer(player === 'X' ? '0' : 'X');
+      setChangePlayer(player === 'X' ? 'O' : 'X');
 
       await channel.sendEvent({
         type: 'game-move',
@@ -69,7 +69,7 @@ function Board({ setResult }) {
 
   channel.on((event) => {
     if (event.type === 'game-move' && event.user.id !== localStorage.getItem('userId')) {
-      const currentPlayer = event.data.player === 'X' ? '0' : 'X';
+      const currentPlayer = event.data.player === 'X' ? 'O' : 'X';
       setPlayer(currentPlayer);
       setChangePlayer(currentPlayer);
       setBoard(board.map((value, index) => {

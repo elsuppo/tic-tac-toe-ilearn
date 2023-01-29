@@ -32,7 +32,7 @@ function Game({ channel, setChannel }) {
   }
 
   if (!playersJoined) {
-    return <Waiting />
+    return <Waiting setChannel={setChannel}/>
   }
 
   return (

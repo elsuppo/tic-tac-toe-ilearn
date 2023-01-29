@@ -4,10 +4,11 @@ import { useChannelStateContext } from 'stream-chat-react';
 
 function GameTools({ setChannel }) {
   const { channel } = useChannelStateContext();
+  console.log(channel);
   return (
     <Stack direction="horizontal">
       <Button
-        variant="light"
+        variant="primary"
         onClick={async () => {
           await channel.stopWatching();
           setChannel(null);

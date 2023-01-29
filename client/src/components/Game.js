@@ -3,6 +3,8 @@ import { Stack } from 'react-bootstrap';
 import { Window, MessageList, MessageInput } from 'stream-chat-react';
 import Board from './Board';
 import GameTools from './GameTools';
+import ResultGame from './ResultGame';
+import Waiting from './Waiting';
 import './Chat.css';
 
 function Game({ channel, setChannel }) {
@@ -18,14 +20,13 @@ function Game({ channel, setChannel }) {
   })
 
   if (!playersJoined) {
-    return (
-      <div>Waiting for other player to join...</div>
-    )
+    return <Waiting />
   }
 
   return (
     <Stack gap={3}>
-      <GameTools setChannel={setChannel}/>
+      <GameTools setChannel={setChannel} />
+      <ResultGame result={result} />
       <Stack direction="horizontal" gap={3} className="justify-content-center flex-wrap">
         <Board
           result={result}

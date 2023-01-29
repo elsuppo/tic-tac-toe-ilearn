@@ -11,8 +11,8 @@ function Board({result, setResult}) {
   const { channel } = useChannelStateContext();
 
   useEffect(() => {
-    checkWin();
     checkDraw();
+    checkWin();
   }, [board])
 
   const selectCell = async (cell) => {
@@ -43,9 +43,7 @@ function Board({result, setResult}) {
           foundWinCombination = false;
         }
       })
-
       if (foundWinCombination) {
-        alert(`Winner ${board[currCombination[0]]}`)
         setResult({
           winner: board[currCombination[0]],
           state: 'won'
@@ -62,7 +60,6 @@ function Board({result, setResult}) {
       }
     })
     if (filled) {
-      alert('Draw!')
       setResult({
         winner: 'none',
         state: 'draw'

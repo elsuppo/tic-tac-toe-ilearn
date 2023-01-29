@@ -17,17 +17,21 @@ const serverClient = StreamChat.getInstance(api_key, api_secret);
 app.post('/login', async (req, res) => {
   try {
     const { user } = req.body;
-    const {users} = await serverClient.queryUsers({name: user});
-    if (users.length === 0) {
-      const userId = uuidv4();
-      const token = serverClient.createToken(userId);
-      res.json({ token, userId, user });
+    if (user) {
+      const {users} = await serverClient.queryUsers({name: user});
+      if (users.length === 0) {
+        const userId = uuidv4();
+        const token = serverClient.createToken(userId);
+        res.json({ token, userId, user });
+      } else {
+        const token = serverClient.createToken(users[0].id);
+        res.json({ token, userId: users[0].id, user: users[0].name });
+      }
     } else {
-      const token = serverClient.createToken(users[0].id);
-      res.json({ token, userId: users[0].id, user: users[0].name });
+      throw new Error('Enter your name!');
     }
   } catch (error) {
-    res.json(error);
+    res.json(error.message);
   }
 });
 

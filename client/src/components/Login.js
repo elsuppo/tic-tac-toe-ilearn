@@ -7,12 +7,17 @@ function Login({ setIsAuth }) {
 
   const login = () => {
     Axios.post(`${process.env.REACT_APP_SERVER}/login`, user).then(res => {
-      const { token, userId, user } = res.data;
-
-      localStorage.setItem('token', token);
-      localStorage.setItem('userId', userId);
-      localStorage.setItem('user', user);
-      setIsAuth(true);
+      if (res.data === 'Enter your name!') {
+        alert('Enter your name!');
+      } else {
+        const { token, userId, user } = res.data;
+        if (token) {
+          localStorage.setItem('token', token);
+          localStorage.setItem('userId', userId);
+          localStorage.setItem('user', user);
+          setIsAuth(true);
+        }
+      }
     })
   }
 
@@ -24,7 +29,7 @@ function Login({ setIsAuth }) {
         placeholder="username"
         onChange={(event) => setUser({ ...user, user: event.target.value })}
       />
-      <Button onClick={login}>Submit</Button>
+      <Button onClick={login}>LogIn</Button>
     </Stack>
   );
 }

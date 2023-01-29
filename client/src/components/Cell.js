@@ -1,14 +1,13 @@
 import React from 'react';
+import './Cell.css'
 
 function Cell({ selectCell, value }) {
   return (
     <div
-      className="d-flex align-items-center justify-content-center border h1 m-0" 
-      role="button"
-      style={{ width: "100px", height: "100px" }}
+      className="cell"
       onClick={selectCell}
     >
-      {value}
+      <p className="fs-1 m-0 font-monospace">{value}</p>
     </div>
   );
 }

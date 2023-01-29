@@ -4,12 +4,13 @@ import { useChannelStateContext } from 'stream-chat-react';
 
 function GameTools({ setChannel }) {
   const { channel } = useChannelStateContext();
-  console.log(channel);
+
   return (
-    <Stack direction="horizontal">
+    <Stack direction="horizontal"  className="justify-content-center">
       <Button
         variant="primary"
         onClick={async () => {
+          // await channel.removeMembers([localStorage.getItem('userId')]);
           await channel.stopWatching();
           setChannel(null);
         }}>Leave Game</Button>

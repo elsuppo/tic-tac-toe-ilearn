@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Stack } from 'react-bootstrap';
 import { Window, MessageList, MessageInput } from 'stream-chat-react';
 import Board from './Board';
@@ -19,6 +19,12 @@ function Game({ channel, setChannel }) {
     setPlayersJoined(event.watcher_count === 2);
   })
 
+  channel.on("user.watching.stop", (event) => {
+    if (event.user.id) {
+      setPlayersJoined(false);
+    }
+  });
+
   if (!playersJoined) {
     return <Waiting />
   }
@@ -28,10 +34,7 @@ function Game({ channel, setChannel }) {
       <GameTools setChannel={setChannel} />
       <ResultGame result={result} />
       <Stack direction="horizontal" gap={3} className="justify-content-center flex-wrap">
-        <Board
-          result={result}
-          setResult={setResult}
-        />
+        <Board setResult={setResult} />
         <Window>
           <MessageList />
           <MessageInput />

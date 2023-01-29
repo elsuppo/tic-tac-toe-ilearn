@@ -1,13 +1,15 @@
 import React from 'react';
+import { Stack } from 'react-bootstrap';
 
 function Counter({ rivalUser, selfCounter, oppCounter }) {
   const userName = localStorage.getItem('user');
 
   return (
-    <div className="d-flex flex-column align-items-center justify-content-center" style={{ height: "70px" }}>
+    <Stack className="align-items-center justify-content-center" direction="horizontal" gap={3}>
       <p className="fs-4 m-0">{userName}: {selfCounter}</p>
+      <span className="fs-4 text-light">|</span>
       <p className="fs-4 m-0">{rivalUser}: {oppCounter}</p>
-    </div>
+    </Stack>
   );
 }
 

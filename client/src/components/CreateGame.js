@@ -42,7 +42,7 @@ function CreateGame() {
           </Channel>
         </Stack>
       ) : (
-        <Stack className="col-md-5 mx-auto mt-5" gap={3}>
+        <Stack className="col-5 mx-auto mt-5" gap={3}>
           <Form.Label className="h5">Create Game</Form.Label>
           <Form.Control
             type="text"
